@@ -1,88 +1,60 @@
 #include<iostream>
-#include<unordered_map>
 #include<vector>
+#include<algorithm>
+#include<map>
+#include<stack>
+#include<queue>
+#include<string>
+#include<set>
+
+#define ll long long 
+#define mod 1000000007
+#define INT_MAX 2147483647
+#define INT_MIN -2147483648
+
+#define vi vector<int>
+#define vl vector<long long int>
+#define vvi vector<vector<int>> 
+#define vvl vector<vector<long long int>>
+#define pi pair<int,int>
+#define pl pair<long long int, long long int>
+#define pb push_back
+
+#define fo(i,n) for(int i=0;i<n;i++)
+#define fon(i,start,end) for(int i=start;i<end;i++)
+#define fos(i,start,end,step) for(int i=start;i<end;i+=step)
+
 using namespace std;
+
+ll solve()
+{
+	ll n, ans=0,m;
+	cin >> n >> m;
+
+	for (int i = 1; i < n; i++) {
+		for (int j = i + 1; j <= n; j++) {
+			if (((m % i) % j) == ((m % j) % i))
+			{
+				cout << i << " " << j << endl;
+				ans++;
+			}
+		}
+	}
+
+	return ans;
+}
+
 int main()
 {
-	int p;
-	scanf("%d", &p);
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-	int t;
+	int t = 1;
 	cin >> t;
 	while (t--)
 	{
-		int n;
-		cin >> n;
-		unordered_map<int,int> m;
-		int r = 1;
-		vector<int> v(n);
-		for (int i = 0;i < n; i++)
-		{
-			int x;
-			cin >> x;
-			v[i] = x;
-			if (m[x] == 0)
-			{
-				m[x] = r;
-				r++;
-			}	
-			//m[x] = m[x]++;
-		}
-		if (r == 2)
-		{
-			cout << 1;
-			for (int i = 0; i < n; i++)
-				cout << "1 ";
-			cout << endl;
-		}
-		else if (r == 3)
-		{
-			cout << r - 1 << endl;
-			for (int i = 0; i < n; i++)
-			{
-				cout << m[v[i]] << " ";
-			}
-			cout << endl;
-		}
-		else
-		{
-			int ans = 2;
-			int start = v[0];
-			int y = 1;
-			int total = 1;
-			m[v[0]] = y;
-			int i = 1;
-			while (v[i] == start)
-				i++;
-			for (; i < n; i++) // till n-1 mayber
-			{
-				while (v[i] == v[i + 1])
-					i++;
-				
-				if (start == v[i + 1])
-				{
-					//if (vis[v[i]] == false)
-					{
-						m[v[i]] = y + 1;
-						y++;
-					}
-
-				}
-				else
-				{
-					i++;
-					while(v[i] == v[i+1])
-				}
-			}
-		}
-		cout << r - 1 << endl;
-		for (int i = 0; i < n; i++)
-		{
-			cout << m[v[i]] << " ";
-		}
-		cout << endl;
-		//cout << *m.count() << endl;;
+		ll ans = 0;
+		ans = solve();
+		cout << ans << '\n';
 	}
 }

@@ -1,0 +1,70 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<map>
+#include<stack>
+#include<queue>
+#include<string>
+#include<set>
+#include<cmath>
+
+#define ll long long 
+#define mod 1000000007
+#define INT_MAX 2147483647
+#define INT_MIN -2147483648
+
+#define vl vector<long long int>
+#define vvl vector<vector<long long int>>
+#define pl pair<long long int, long long int>
+#define pb push_back
+
+#define fo(i,n) for(int i=0;i<n;i++)
+#define forev(i,n) for(int i=n-1;i>=0;i--)
+
+using namespace std;
+
+ll Ynot()
+{
+	ll ans = 0;
+	ll n;
+	cin >> n;
+	vl v(n);
+	fo(i, n)cin >> v[i];
+	if (v[n - 2] > v[n - 1]) {
+		cout << -1 << endl;
+		return 0;
+	}
+	ll x = v[n - 2] - v[n - 1];
+	if (x > v[n - 2]) {
+		vl v2 = v;
+		sort(v2.begin(), v2.end());
+		bool flag = true;
+		fo(i, n)if (v[i] != v2[i])flag = false;
+		if (flag) {
+			cout << 0 << endl;
+			return 0;
+		}
+		cout << -1 << endl;
+		return 0;
+	}
+	cout << n - 2 << '\n';
+	fo(i, n - 2) {
+		cout << i+1 << " " << n - 1 << " " << n << '\n';
+	}
+	return ans;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int t = 1;
+	cin >> t;
+	while (t--)
+	{
+		ll ans = 0;
+		ans = Ynot();
+		//cout << ans << '\n';
+	}
+}

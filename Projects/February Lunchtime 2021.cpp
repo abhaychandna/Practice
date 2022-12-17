@@ -1,0 +1,87 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<map>
+#include<stack>
+#include<queue>
+#include<string>
+#include<set>
+
+#define ll long long 
+#define mod 1000000007
+#define INT_MAX 2147483647
+#define INT_MIN -2147483648
+
+#define vi vector<int>
+#define vl vector<long long int>
+#define pb push_back
+
+#define fo(i,n) for(long long int i=0;i<n;i++)
+#define fos(i,start,end,step) for(long long int i=start;i<end;i+=step)
+
+using namespace std;
+
+const int sz = 5e5+3;
+vector<int> adj[sz];
+
+ll solve()
+{
+	ll ans = 0;
+
+	ll n, m;
+	cin >> n >> m;
+	string s = "";
+	
+	fo(i, n)s += '0';
+
+	for (int i = 1; i <= n;i++) adj[i].clear();
+
+	for (int i = 1; i <= m; i++) {
+		ll u, v;
+		cin >> u >> v;
+		adj[u].pb(v);
+		adj[v].pb(u);
+	}
+
+	map<vector<int>, int > mp;
+	for (int i = 1; i <= n; i++) {
+		sort(adj[i].begin(),adj[i].end());
+		mp[adj[i]]++;
+	}
+
+	for (const pair<vector<int>, int > &p : mp) {
+		if (p.first.size() + p.second == n) {
+			ans++;
+			if (ans == 1) {
+
+				fo(i, n)s[i] = '1';
+
+				for (int x : p.first) {
+					s[x - 1] = '0';
+				}
+
+			}
+		}
+	}
+
+	cout << ans << '\n';
+	cout << s << '\n';
+
+
+	return ans;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int t = 1;
+	cin >> t;
+	while (t--)
+	{
+		ll ans;
+		ans = solve();
+		//cout << ans << '\n';
+	}
+}
